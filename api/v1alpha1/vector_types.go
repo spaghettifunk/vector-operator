@@ -17,6 +17,8 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"fmt"
+
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -32,9 +34,10 @@ type _metaVectorSpec interface{} //nolint:deadcode,unused
 // VectorSpec defines the desired state of Vector
 type VectorSpec struct {
 	// Reference to the vector system. Each of the `vectorRef`s can manage a agent daemonset and a aggregator statefulset.
-	VectorRef      string          `json:"vectorRef,omitempty"`
-	AgentSpec      *AgentSpec      `json:"agent,omitempty"`
-	AggregatorSpec *AggregatorSpec `json:"aggregator,omitempty"`
+	VectorRef        string          `json:"vectorRef,omitempty"`
+	ControlNamespace string          `json:"controlNamespace,omitempty"`
+	AgentSpec        *AgentSpec      `json:"agent,omitempty"`
+	AggregatorSpec   *AggregatorSpec `json:"aggregator,omitempty"`
 }
 
 // VectorStatus defines the observed state of Vector
@@ -65,14 +68,19 @@ type VectorList struct {
 }
 
 const (
-	DefaultAgentImageRepository                = "fluent/fluent-bit"
-	DefaultAgentImageTag                       = "1.9.5"
-	DefaultAggregatorImageRepository           = "ghcr.io/banzaicloud/fluentd"
-	DefaultAggregatorImageTag                  = "v1.14.6-alpine-5"
+	DefaultAgentImageRepository                = "timberio/vector"
+	DefaultAgentImageTag                       = "0.23.0-alpine"
+	DefaultAggregatorImageRepository           = "timberio/vector"
+	DefaultAggregatorImageTag                  = "0.23.0-alpine"
 	DefaultAggregatorBufferStorageVolumeName   = "aggregator-buffer"
 	DefaultAggregatorVolumeModeImageRepository = "busybox"
 	DefaultAggregatorVolumeModeImageTag        = "latest"
 )
+
+// QualifiedName is the "logging-resource" name combined
+func (v *Vector) QualifiedName(name string) string {
+	return fmt.Sprintf("%s-%s", v.Name, name)
+}
 
 func init() {
 	SchemeBuilder.Register(&Vector{}, &VectorList{})

@@ -27,6 +27,8 @@ type AgentSpec struct {
 	Labels               map[string]string `json:"labels,omitempty"`
 	EnvVars              []corev1.EnvVar   `json:"envVars,omitempty"`
 	Image                ImageSpec         `json:"image,omitempty"`
+	TargetHost           string            `json:"targetHost,omitempty"`
+	TargetPort           int32             `json:"targetPort,omitempty"`
 	// Set the logging verbosity level. Allowed values are: error, warn, info, debug and trace.
 	// Values are accumulative, e.g: if 'debug' is set, it will include error, warning, info and debug.
 	// Note that trace mode is only available if Fluent Bit was built with the WITH_TRACE option enabled. (default: info)

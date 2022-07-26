@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sat Jul 23 19:37:22 2022
+# Make data base, printed on Tue Jul 26 10:01:53 2022
 
 # Variables
 
@@ -18,10 +18,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 ?F = $(notdir $?)
 # makefile (from `Makefile', line 18)
 .SHELLFLAGS = -ec
-# makefile (from `Makefile', line 117)
+# makefile (from `Makefile', line 121)
 CONTROLLER_TOOLS_VERSION = v0.9.0
-# environment
-NVM_INC = /Users/davideberdin/.nvm/versions/node/v16.14.2/include/node
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -29,74 +27,64 @@ NVM_INC = /Users/davideberdin/.nvm/versions/node/v16.14.2/include/node
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/davideberdin/Documents/github/vector-operator
+CURDIR := /Users/dberdin/Documents/GitHub/vector-operator
 # makefile (from `Makefile', line 17)
 SHELL = /usr/bin/env bash -o pipefail
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 106)
+# makefile (from `Makefile', line 110)
 LOCALBIN = $(shell pwd)/bin
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
- 
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-INFOPATH = /opt/homebrew/share/info:
-# environment
 VSCODE_CWD = /
+ 
 # environment
 GOPROXY = https://proxy.golang.org,direct
 # environment
-PATH = /Users/davideberdin/.nvm/versions/node/v16.14.2/bin://flutter/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/davideberdin/go/bin
-# makefile (from `Makefile', line 119)
+PATH = /usr/local/opt/go/libexec/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/laps:/Users/dberdin/go/bin
+# makefile (from `Makefile', line 123)
 KUSTOMIZE_INSTALL_SCRIPT = "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-GOPATH = /Users/davideberdin/go
-# environment
-NVM_BIN = /Users/davideberdin/.nvm/versions/node/v16.14.2/bin
+GOPATH = /Users/dberdin/go
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
-# makefile (from `Makefile', line 112)
+# makefile (from `Makefile', line 116)
 CONTROLLER_GEN = $(LOCALBIN)/controller-gen
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.6UnmqKwxFi/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.W4qCeb6gFE/Listeners
 # automatic
 %F = $(notdir $%)
 # makefile (from `Makefile', line 9)
 GOBIN = $(shell go env GOPATH)/bin
 # environment
-PWD = /Users/davideberdin/Documents/github/vector-operator
-# environment
-HOMEBREW_CELLAR = /opt/homebrew/Cellar
+PWD = /Users/dberdin/Documents/GitHub/vector-operator
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
-MANPATH = /Users/davideberdin/.nvm/versions/node/v16.14.2/share/man:/opt/homebrew/share/man::
+GOMODCACHE = /Users/dberdin/go/pkg/mod
 # environment
-GOMODCACHE = /Users/davideberdin/go/pkg/mod
-# environment
-HOME = /Users/davideberdin
+HOME = /Users/dberdin
 # default
-MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/davideberdin/Library/Application Support/Code/CachedData/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+VSCODE_CODE_CACHE_PATH = /Users/dberdin/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
 # environment
-LOGNAME = davideberdin
+LOGNAME = dberdin
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
-NVM_CD_FLAGS = -q
-# environment
-ZSH = /Users/davideberdin/.oh-my-zsh
+ZSH = /Users/dberdin/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -112,27 +100,31 @@ SHLVL = 1
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = davideberdin
+USER = dberdin
 # makefile
 .DEFAULT_GOAL := all
+# environment
+GOROOT = /usr/local/opt/go/libexec
 # environment
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
+# environment
+LAMBDA_MOD_N_DIR_LEVELS = 10
 # default
-MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
-# makefile (from `Makefile', line 111)
+MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# makefile (from `Makefile', line 115)
 KUSTOMIZE = $(LOCALBIN)/kustomize
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/vz/808cp0rd1zq2v5l0sb_mbswh0000gn/T/
+TMPDIR = /var/folders/bg/nvgfl4195s1ccjbcvgzkdw_c0000gp/T/
 # automatic
 *F = $(notdir $*)
 # makefile (from `Makefile', line 3)
 IMG = controller:latest
 # environment
-VSCODE_IPC_HOOK = /Users/davideberdin/Library/Application Support/Code/1.69.0-main.sock
+VSCODE_IPC_HOOK = /Users/dberdin/Library/Application Support/Code/1.69.2-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -141,30 +133,28 @@ MAKEFLAGS = Rrqp
 MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
-# environment
-NVM_DIR = /Users/davideberdin/.nvm
-# makefile (from `Makefile', line 116)
+# makefile (from `Makefile', line 120)
 KUSTOMIZE_VERSION = v3.8.7
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.15113149.15113155
-# environment
-HOMEBREW_PREFIX = /opt/homebrew
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.24439753.24439759
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
-# makefile (from `Makefile', line 113)
+# makefile (from `Makefile', line 117)
 ENVTEST = $(LOCALBIN)/setup-envtest
 # environment
-HOMEBREW_REPOSITORY = /opt/homebrew
-# environment
-__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+__CF_USER_TEXT_ENCODING = 0x1F6:0x0:0x2
 # environment
 COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
+# environment
+PHANTOMJS_PLATFORM = darwin
+# environment
+PHANTOMJS_ARCH = x64
 # environment
 PAGER = less
 # environment
@@ -177,16 +167,16 @@ SUFFIXES :=
 .INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
-# makefile (from `Makefile', line 83)
+# makefile (from `Makefile', line 87)
 ignore-not-found = false
 # environment
 LANG = C
 # makefile (from `Makefile', line 5)
 ENVTEST_K8S_VERSION = 1.24.1
 # environment
-VSCODE_PID = 32449
+VSCODE_PID = 34371
 # variable set hash-table stats:
-# Load=86/1024=8%, Rehash=0, Collisions=6/164=4%
+# Load=81/1024=8%, Rehash=0, Collisions=6/158=4%
 
 # Pattern-specific Variable Values
 
@@ -194,7 +184,7 @@ VSCODE_PID = 32449
 
 # Directories
 
-# . (device 16777233, inode 15105320): 20 files, no impossibilities.
+# . (device 16777220, inode 24441949): 20 files, no impossibilities.
 
 # 20 files, no impossibilities in 1 directories.
 
@@ -204,17 +194,11 @@ VSCODE_PID = 32449
 
 # Files
 
-envtest: /Users/davideberdin/Documents/github/vector-operator/bin/setup-envtest
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-
-/Users/davideberdin/Documents/github/vector-operator/bin/kustomize: /Users/davideberdin/Documents/github/vector-operator/bin
+/Users/dberdin/Documents/GitHub/vector-operator/bin/kustomize: /Users/dberdin/Documents/GitHub/vector-operator/bin
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 123):
+#  commands to execute (from `Makefile', line 127):
 	curl -s $(KUSTOMIZE_INSTALL_SCRIPT) | bash -s -- $(subst v,,$(KUSTOMIZE_VERSION)) $(LOCALBIN)
 	
 
@@ -226,18 +210,18 @@ all: build
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
 
 docker-build: test
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 74):
+#  commands to execute (from `Makefile', line 78):
 	docker build -t ${IMG} .
 	
 
-.PHONY: all help manifests generate fmt vet test build run docker-build docker-push install uninstall deploy undeploy kustomize controller-gen envtest
+.PHONY: all help manifests generate fmt vet test docs build run docker-build docker-push install uninstall deploy undeploy kustomize controller-gen envtest
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -253,18 +237,26 @@ uninstall: manifests kustomize
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 92):
+#  commands to execute (from `Makefile', line 96):
 	$(KUSTOMIZE) build config/crd | kubectl delete --ignore-not-found=$(ignore-not-found) -f -
 	
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-09 22:48:44
+#  Last modified 2022-07-26 10:01:35
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+/Users/dberdin/Documents/GitHub/vector-operator/bin/setup-envtest: /Users/dberdin/Documents/GitHub/vector-operator/bin
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 137):
+	GOBIN=$(LOCALBIN) go install sigs.k8s.io/controller-runtime/tools/setup-envtest@latest
+	
 
 test: manifests generate fmt vet envtest
 #  Phony target (prerequisite of .PHONY).
@@ -275,14 +267,6 @@ test: manifests generate fmt vet envtest
 	KUBEBUILDER_ASSETS="$(shell $(ENVTEST) use $(ENVTEST_K8S_VERSION) -p path)" go test ./... -coverprofile cover.out
 	
 
-/Users/davideberdin/Documents/github/vector-operator/bin/setup-envtest: /Users/davideberdin/Documents/github/vector-operator/bin
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 133):
-	GOBIN=$(LOCALBIN) go install sigs.k8s.io/controller-runtime/tools/setup-envtest@latest
-	
-
 build: generate fmt vet
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
@@ -290,8 +274,8 @@ build: generate fmt vet
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
-#  commands to execute (from `Makefile', line 66):
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  commands to execute (from `Makefile', line 70):
 	go build -o bin/manager main.go
 	
 
@@ -304,6 +288,12 @@ vet:
 	go vet ./...
 	
 
+envtest: /Users/dberdin/Documents/GitHub/vector-operator/bin/setup-envtest
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
 help:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
@@ -313,48 +303,31 @@ help:
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 	
 
-kustomize: /Users/davideberdin/Documents/github/vector-operator/bin/kustomize
+kustomize: /Users/dberdin/Documents/GitHub/vector-operator/bin/kustomize
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
- 
 #  File has not been updated.
 
 generate: controller-gen
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
-# automatic
-# @ := generate
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := controller-gen
-# automatic
-# | := 
-# automatic
-# < := controller-gen
-# automatic
-# ^ := controller-gen
-# automatic
-# ? := controller-gen
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/14=14%
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
 #  commands to execute (from `Makefile', line 48):
 	$(CONTROLLER_GEN) object:headerFile="hack/boilerplate.go.txt" paths="./..."
 	
 
 undeploy:
 #  Phony target (prerequisite of .PHONY).
+ 
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 101):
+#  commands to execute (from `Makefile', line 105):
 	$(KUSTOMIZE) build config/default | kubectl delete --ignore-not-found=$(ignore-not-found) -f -
 	
 
@@ -378,17 +351,45 @@ run: manifests generate fmt vet
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 70):
+#  commands to execute (from `Makefile', line 74):
 	go run ./main.go
 	
 
-/Users/davideberdin/Documents/github/vector-operator/bin:
+/Users/dberdin/Documents/GitHub/vector-operator/bin:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-09 22:49:42
+#  Implicit/static pattern stem: `'
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
-#  commands to execute (from `Makefile', line 108):
+#  Needs to be updated (-q is set).
+# automatic
+# @ := /Users/dberdin/Documents/GitHub/vector-operator/bin
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/13=15%
+#  commands to execute (from `Makefile', line 112):
 	mkdir -p $(LOCALBIN)
+	
+
+docs:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 64):
+	go run cmd/docs.go
 	
 
 fmt:
@@ -400,38 +401,42 @@ fmt:
 	go fmt ./...
 	
 
+/Users/dberdin/Documents/GitHub/vector-operator/bin/controller-gen: /Users/dberdin/Documents/GitHub/vector-operator/bin
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  commands to execute (from `Makefile', line 132):
+	GOBIN=$(LOCALBIN) go install sigs.k8s.io/controller-tools/cmd/controller-gen@$(CONTROLLER_TOOLS_VERSION)
+	
+
 deploy: manifests kustomize
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 96):
+#  commands to execute (from `Makefile', line 100):
 	cd config/manager && $(KUSTOMIZE) edit set image controller=${IMG}
 	$(KUSTOMIZE) build config/default | kubectl apply -f -
 	
 
-/Users/davideberdin/Documents/github/vector-operator/bin/controller-gen: /Users/davideberdin/Documents/github/vector-operator/bin
-#  Implicit rule search has not been done.
-#  Last modified 2022-07-09 22:49:42
-#  File has been updated.
-#  Successfully updated.
-#  commands to execute (from `Makefile', line 128):
-	GOBIN=$(LOCALBIN) go install sigs.k8s.io/controller-tools/cmd/controller-gen@$(CONTROLLER_TOOLS_VERSION)
-	
-
-controller-gen: /Users/davideberdin/Documents/github/vector-operator/bin/controller-gen
+controller-gen: /Users/dberdin/Documents/GitHub/vector-operator/bin/controller-gen
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
 
 docker-push:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 78):
+#  commands to execute (from `Makefile', line 82):
 	docker push ${IMG}
 	
 
@@ -440,12 +445,12 @@ install: manifests kustomize
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 88):
+#  commands to execute (from `Makefile', line 92):
 	$(KUSTOMIZE) build config/crd | kubectl apply -f -
 	
 
 # files hash-table stats:
-# Load=26/1024=3%, Rehash=0, Collisions=2/103=2%
+# Load=27/1024=3%, Rehash=0, Collisions=5/106=5%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -457,6 +462,6 @@ install: manifests kustomize
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Jul 23 19:37:22 2022
+# Finished Make data base on Tue Jul 26 10:01:53 2022
 
  
