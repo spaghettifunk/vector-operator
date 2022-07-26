@@ -1,0 +1,6 @@
+apiVersion: dev.vector/v1alpha1
+kind: Vector
+metadata:
+  name: vector-sample
+spec:
+  # TODO(user): Add fields here

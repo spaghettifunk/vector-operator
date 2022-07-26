@@ -1,0 +1,15 @@
+domain: dev.vector
+layout:
+- go.kubebuilder.io/v3
+projectName: vector-operator
+repo: github.com/spaghettifunk/vector-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: dev.vector
+  kind: Vector
+  path: github.com/spaghettifunk/vector-operator/api/v1alpha1
+  version: v1alpha1
+version: "3"
