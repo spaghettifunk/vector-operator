@@ -45,6 +45,7 @@ type AgentSpec struct {
 	LivenessDefaultCheck    bool                         `json:"livenessDefaultCheck,omitempty"`
 	ReadinessProbe          *corev1.Probe                `json:"readinessProbe,omitempty"`
 	ServiceAccountOverrides *typeoverride.ServiceAccount `json:"serviceAccount,omitempty"`
+	CustomConfigSecret      string                       `json:"customConfigSecret,omitempty"`
 }
 
 // GetPrometheusPortFromAnnotation gets the port value from annotation

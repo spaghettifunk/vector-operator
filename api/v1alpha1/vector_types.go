@@ -34,10 +34,17 @@ type _metaVectorSpec interface{} //nolint:deadcode,unused
 // VectorSpec defines the desired state of Vector
 type VectorSpec struct {
 	// Reference to the vector system. Each of the `vectorRef`s can manage a agent daemonset and a aggregator statefulset.
-	VectorRef        string          `json:"vectorRef,omitempty"`
-	ControlNamespace string          `json:"controlNamespace,omitempty"`
-	AgentSpec        *AgentSpec      `json:"agent,omitempty"`
-	AggregatorSpec   *AggregatorSpec `json:"aggregator,omitempty"`
+	VectorRef      string          `json:"vectorRef,omitempty"`
+	AgentSpec      *AgentSpec      `json:"agent,omitempty"`
+	AggregatorSpec *AggregatorSpec `json:"aggregator,omitempty"`
+	// Limit namespaces to watch Transform and Sink custom resources.
+	WatchNamespaces []string `json:"watchNamespaces,omitempty"`
+	// Namespace for cluster wide configuration resources like Transforms and Sinks.
+	// This should be a protected namespace from regular users.
+	// Resources like agent and aggregator will run in this namespace as well.
+	ControlNamespace string `json:"controlNamespace"`
+	// Allow configuration of cluster resources from any namespace. Mutually exclusive with ControlNamespace restriction of Cluster resources
+	AllowClusterResourcesFromAllNamespaces bool `json:"allowClusterResourcesFromAllNamespaces,omitempty"`
 }
 
 // VectorStatus defines the observed state of Vector
