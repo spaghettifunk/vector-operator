@@ -1,5 +1,7 @@
 package v1alpha1
 
+import "github.com/spaghettifunk/vector-operator/pkg/sdk/vector/sources"
+
 // +name:"Pipeline"
 // +weight:"200"
 type _hugoPipeline interface{} //nolint:deadcode,unused
@@ -16,7 +18,10 @@ type PipelineSpec struct {
 }
 
 type Source struct {
-	Name string `json:"name,omitempty"`
+	Name              string                    `json:"name,omitempty"`
+	ApacheMetricsSpec sources.ApacheMetricsSpec `json:"apacheMetrics,omitempty"`
+	DemoLogsSpec      sources.DemoLogsSpec      `json:"demoLogs,omitempty"`
+	VectorSpec        *sources.VectorSpec       `json:"vector,omitempty"`
 }
 
 type Transform struct {

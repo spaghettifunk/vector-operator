@@ -1,5 +1,5 @@
 package sinks
 
 type VectorSpec struct {
-	Address string `json:"address,omitempty"`
+	Type SinkType `json:"type,omitempty"`
 }
