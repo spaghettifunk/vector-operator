@@ -22,16 +22,14 @@ type _metaAgentSpec interface{} //nolint:deadcode,unused
 
 // AgentSpec defines the desired state of Agent
 type AgentSpec struct {
-	DaemonSetAnnotations map[string]string `json:"daemonsetAnnotations,omitempty"`
-	Annotations          map[string]string `json:"annotations,omitempty"`
-	Labels               map[string]string `json:"labels,omitempty"`
-	EnvVars              []corev1.EnvVar   `json:"envVars,omitempty"`
-	Image                ImageSpec         `json:"image,omitempty"`
-	TargetHost           string            `json:"targetHost,omitempty"`
-	TargetPort           int32             `json:"targetPort,omitempty"`
-	// Set the logging verbosity level. Allowed values are: error, warn, info, debug and trace.
-	// Values are accumulative, e.g: if 'debug' is set, it will include error, warning, info and debug.
-	// Note that trace mode is only available if Fluent Bit was built with the WITH_TRACE option enabled. (default: info)
+	Pipeline                *PipelineSpec                `json:"pipeline,omitempty"`
+	DaemonSetAnnotations    map[string]string            `json:"daemonsetAnnotations,omitempty"`
+	Annotations             map[string]string            `json:"annotations,omitempty"`
+	Labels                  map[string]string            `json:"labels,omitempty"`
+	EnvVars                 []corev1.EnvVar              `json:"envVars,omitempty"`
+	Image                   ImageSpec                    `json:"image,omitempty"`
+	TargetHost              string                       `json:"targetHost,omitempty"`
+	TargetPort              int32                        `json:"targetPort,omitempty"`
 	LogLevel                string                       `json:"logLevel,omitempty" plugin:"default:info"`
 	Resources               corev1.ResourceRequirements  `json:"resources,omitempty"`
 	Tolerations             []corev1.Toleration          `json:"tolerations,omitempty"`
@@ -45,7 +43,6 @@ type AgentSpec struct {
 	LivenessDefaultCheck    bool                         `json:"livenessDefaultCheck,omitempty"`
 	ReadinessProbe          *corev1.Probe                `json:"readinessProbe,omitempty"`
 	ServiceAccountOverrides *typeoverride.ServiceAccount `json:"serviceAccount,omitempty"`
-	CustomConfigSecret      string                       `json:"customConfigSecret,omitempty"`
 }
 
 // GetPrometheusPortFromAnnotation gets the port value from annotation

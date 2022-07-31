@@ -19,6 +19,8 @@ type _metaAggregatorSpec interface{} //nolint:deadcode,unused
 
 // AggregatorSpec defines the desired state of Aggregator
 type AggregatorSpec struct {
+	Enable                 bool              `json:"enable,omitempty"`
+	Pipeline               *PipelineSpec     `json:"pipeline,omitempty"`
 	StatefulSetAnnotations map[string]string `json:"statefulsetAnnotations,omitempty"`
 	Annotations            map[string]string `json:"annotations,omitempty"`
 	ConfigCheckAnnotations map[string]string `json:"configCheckAnnotations,omitempty"`

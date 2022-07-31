@@ -38,7 +38,7 @@ func (r *Reconciler) daemonSet() (runtime.Object, reconciler.DesiredState, error
 	}
 
 	containers := []corev1.Container{
-		*r.fluentbitContainer(),
+		*r.agentContainer(),
 	}
 
 	desired := &appsv1.DaemonSet{
@@ -70,7 +70,7 @@ func (r *Reconciler) daemonSet() (runtime.Object, reconciler.DesiredState, error
 	return desired, reconciler.StatePresent, nil
 }
 
-func (r *Reconciler) fluentbitContainer() *corev1.Container {
+func (r *Reconciler) agentContainer() *corev1.Container {
 	return &corev1.Container{
 		Name:            containerName,
 		Image:           r.Vector.Spec.AgentSpec.Image.RepositoryWithTag(),
@@ -125,18 +125,18 @@ func (r *Reconciler) generateVolumeMounts() (v []corev1.VolumeMount) {
 		})
 	}
 
-	if r.Vector.Spec.AgentSpec.CustomConfigSecret == "" {
-		v = append(v, corev1.VolumeMount{
-			Name:      "config",
-			MountPath: "/fluent-bit/etc/fluent-bit.conf",
-			SubPath:   BaseConfigName,
-		})
-	} else {
-		v = append(v, corev1.VolumeMount{
-			Name:      "config",
-			MountPath: "/fluent-bit/etc/",
-		})
-	}
+	// if r.Vector.Spec.AgentSpec.CustomConfigSecret == "" {
+	// 	v = append(v, corev1.VolumeMount{
+	// 		Name:      "config",
+	// 		MountPath: "/fluent-bit/etc/fluent-bit.conf",
+	// 		SubPath:   BaseConfigName,
+	// 	})
+	// } else {
+	// 	v = append(v, corev1.VolumeMount{
+	// 		Name:      "config",
+	// 		MountPath: "/fluent-bit/etc/",
+	// 	})
+	// }
 
 	return
 }
@@ -171,31 +171,31 @@ func (r *Reconciler) generateVolume() (v []corev1.Volume) {
 			}})
 	}
 
-	if r.Vector.Spec.AgentSpec.CustomConfigSecret == "" {
-		volume := corev1.Volume{
-			Name: "config",
-			VolumeSource: corev1.VolumeSource{
-				Secret: &corev1.SecretVolumeSource{
-					SecretName: r.Vector.QualifiedName(agentSecretConfigName),
-					Items: []corev1.KeyToPath{
-						{
-							Key:  BaseConfigName,
-							Path: BaseConfigName,
-						},
-					},
-				},
-			},
-		}
-		v = append(v, volume)
-	} else {
-		v = append(v, corev1.Volume{
-			Name: "config",
-			VolumeSource: corev1.VolumeSource{
-				Secret: &corev1.SecretVolumeSource{
-					SecretName: r.Vector.Spec.AgentSpec.CustomConfigSecret,
-				},
-			},
-		})
-	}
+	// if r.Vector.Spec.AgentSpec.CustomConfigSecret == "" {
+	// 	volume := corev1.Volume{
+	// 		Name: "config",
+	// 		VolumeSource: corev1.VolumeSource{
+	// 			Secret: &corev1.SecretVolumeSource{
+	// 				SecretName: r.Vector.QualifiedName(agentSecretConfigName),
+	// 				Items: []corev1.KeyToPath{
+	// 					{
+	// 						Key:  BaseConfigName,
+	// 						Path: BaseConfigName,
+	// 					},
+	// 				},
+	// 			},
+	// 		},
+	// 	}
+	// 	v = append(v, volume)
+	// } else {
+	// 	v = append(v, corev1.Volume{
+	// 		Name: "config",
+	// 		VolumeSource: corev1.VolumeSource{
+	// 			Secret: &corev1.SecretVolumeSource{
+	// 				SecretName: r.Vector.Spec.AgentSpec.CustomConfigSecret,
+	// 			},
+	// 		},
+	// 	})
+	// }
 	return
 }

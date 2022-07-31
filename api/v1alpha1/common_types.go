@@ -10,7 +10,7 @@ import (
 type _hugoCommon interface{} //nolint:deadcode,unused
 
 // +name:"Common"
-// +version:"v1beta1"
+// +version:"v1alpha1"
 // +description:"ImageSpec Metrics Security"
 type _metaCommon interface{} //nolint:deadcode,unused
 
