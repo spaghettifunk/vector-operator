@@ -1,5 +1,7 @@
 package sources
 
+// +kubebuilder:object:generate=true
+
 // https://vector.dev/docs/reference/configuration/sources/vector/
 type VectorSpec struct {
 	Type SourceType `json:"type,omitempty"`

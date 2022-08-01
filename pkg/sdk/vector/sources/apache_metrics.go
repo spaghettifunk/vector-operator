@@ -1,5 +1,7 @@
 package sources
 
+// +kubebuilder:object:generate=true
+
 // ref: https://vector.dev/docs/reference/configuration/sources/apache_metrics/
 type ApacheMetricsSpec struct {
 	Type SourceType `json:"type,omitempty"`
@@ -10,6 +12,8 @@ type ApacheMetricsSpec struct {
 	// Configures an HTTP(S) proxy for Vector to use. By default, the globally configured proxy is used
 	Proxy *Proxy `json:"proxy,omitempty"`
 }
+
+// +kubebuilder:object:generate=true
 
 type Proxy struct {
 	// If false the proxy will be disabled.

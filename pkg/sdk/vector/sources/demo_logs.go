@@ -1,5 +1,7 @@
 package sources
 
+// +kubebuilder:object:generate=true
+
 // ref: https://vector.dev/docs/reference/configuration/sources/demo_logs/
 type DemoLogsSpec struct {
 	Type SourceType `json:"type,omitempty"`
@@ -13,7 +15,7 @@ type DemoLogsSpec struct {
 	Framing *Framing `json:"framing,omitempty"`
 	// The amount of time, in seconds, to pause between each batch of output lines. The default is one
 	// batch per second. In order to remove the delay and output batches as quickly as possible, set interval to 0.0.
-	Interval float32 `json:"interval,omitempty"`
+	Interval string `json:"interval,omitempty"`
 	// The list of lines to output.
 	Lines []string `json:"lines,omitempty"`
 	// If true, each output line starts with an increasing sequence number, beginning with 0.
@@ -24,6 +26,8 @@ type Decoding struct {
 	// The decoding method.
 	Codec string `json:"codec,omitempty"`
 }
+
+// +kubebuilder:object:generate=true
 
 type Framing struct {
 	// Options for character_delimited framing.

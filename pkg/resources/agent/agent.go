@@ -76,7 +76,6 @@ func (r *Reconciler) Reconcile() (*reconcile.Result, error) {
 		r.clusterPodSecurityPolicy,
 		r.pspClusterRole,
 		r.pspClusterRoleBinding,
-		// r.configSecret,
 		r.daemonSet,
 		r.serviceMetrics,
 		r.monitorServiceMetrics,

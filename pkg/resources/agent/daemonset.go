@@ -67,6 +67,8 @@ func (r *Reconciler) daemonSet() (runtime.Object, reconciler.DesiredState, error
 		},
 	}
 
+	fmt.Println(desired)
+
 	return desired, reconciler.StatePresent, nil
 }
 

@@ -8,6 +8,5 @@ GOBIN=/Users/davideberdin/Documents/github/vector-operator/bin go install sigs.k
 go fmt ./...
 go vet ./...
 go build -o bin/manager main.go
- 
 make: Leaving directory `/Users/davideberdin/Documents/github/vector-operator'
  

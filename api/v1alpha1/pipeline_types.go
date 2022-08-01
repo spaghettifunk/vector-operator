@@ -11,6 +11,8 @@ type _hugoPipeline interface{} //nolint:deadcode,unused
 // +description:"PipelineSpec Source Transformer Sink"
 type _metaPipeline interface{} //nolint:deadcode,unused
 
+// +kubebuilder:object:generate=true
+
 type PipelineSpec struct {
 	Sources    []*Source    `json:"sources,omitempty"`
 	Transforms []*Transform `json:"transforms,omitempty"`
@@ -18,10 +20,10 @@ type PipelineSpec struct {
 }
 
 type Source struct {
-	Name              string                    `json:"name,omitempty"`
-	ApacheMetricsSpec sources.ApacheMetricsSpec `json:"apacheMetrics,omitempty"`
-	DemoLogsSpec      sources.DemoLogsSpec      `json:"demoLogs,omitempty"`
-	VectorSpec        *sources.VectorSpec       `json:"vector,omitempty"`
+	Name              string                     `json:"name,omitempty"`
+	ApacheMetricsSpec *sources.ApacheMetricsSpec `json:"apacheMetrics,omitempty"`
+	DemoLogsSpec      *sources.DemoLogsSpec      `json:"demoLogs,omitempty"`
+	VectorSpec        *sources.VectorSpec        `json:"vector,omitempty"`
 }
 
 type Transform struct {

@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sun Jul 31 18:19:33 2022
+# Make data base, printed on Mon Aug  1 19:25:34 2022
 
 # Variables
 
@@ -29,7 +29,6 @@ NVM_INC = /Users/davideberdin/.nvm/versions/node/v16.14.2/include/node
 # automatic
 @F = $(notdir $@)
 # makefile
- 
 CURDIR := /Users/davideberdin/Documents/github/vector-operator
 # makefile (from `Makefile', line 17)
 SHELL = /usr/bin/env bash -o pipefail
@@ -184,7 +183,7 @@ LANG = C
 # makefile (from `Makefile', line 5)
 ENVTEST_K8S_VERSION = 1.24.1
 # environment
-VSCODE_PID = 78062
+VSCODE_PID = 95877
 # variable set hash-table stats:
 # Load=86/1024=8%, Rehash=0, Collisions=6/164=4%
 
@@ -289,6 +288,7 @@ build: generate fmt vet
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
+ 
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/6=0%
 #  commands to execute (from `Makefile', line 70):
@@ -308,7 +308,6 @@ help:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
- 
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 38):
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_0-9-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
@@ -466,6 +465,6 @@ install: manifests kustomize
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jul 31 18:19:33 2022
+# Finished Make data base on Mon Aug  1 19:25:34 2022
 
  
