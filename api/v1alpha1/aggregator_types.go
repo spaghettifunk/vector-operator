@@ -42,6 +42,7 @@ type AggregatorSpec struct {
 	Tolerations           []corev1.Toleration         `json:"tolerations,omitempty"`
 	NodeSelector          map[string]string           `json:"nodeSelector,omitempty"`
 	Affinity              *corev1.Affinity            `json:"affinity,omitempty"`
+	MountPath             string                      `json:"mountPath,omitempty"`
 	Metrics               *Metrics                    `json:"metrics,omitempty"`
 	Security              *Security                   `json:"security,omitempty"`
 	Scaling               *AggregatorScaling          `json:"scaling,omitempty"`

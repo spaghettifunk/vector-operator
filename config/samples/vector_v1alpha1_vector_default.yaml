@@ -1,0 +1,10 @@
+apiVersion: dev.vector/v1alpha1
+kind: Vector
+metadata:
+  name: default-vector
+spec:
+  agent:
+    logLevel: debug
+  aggregator:
+    logLevel: debug
+  controlNamespace: default

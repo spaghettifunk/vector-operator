@@ -100,18 +100,18 @@ func (r *VectorReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctr
 		// model.NewValidationReconciler(ctx, r.Client, vectorResources, &secretLoaderFactory{Client: r.Client}),
 	}
 
-	if vector.Spec.AggregatorSpec != nil {
-		agentConfig, err := r.clusterConfiguration(vectorResources)
-		if err != nil {
-			reconcilers = append(reconcilers, func() (*reconcile.Result, error) {
-				return &reconcile.Result{}, err
-			})
-		} else {
-			log.V(1).Info("agent configuration", "config", agentConfig)
+	// if vector.Spec.AggregatorSpec != nil {
+	// 	aggregatorConfig, err := r.clusterConfiguration(vectorResources)
+	// 	if err != nil {
+	// 		reconcilers = append(reconcilers, func() (*reconcile.Result, error) {
+	// 			return &reconcile.Result{}, err
+	// 		})
+	// 	} else {
+	// 		log.V(1).Info("agent configuration", "config", aggregatorConfig)
 
-			reconcilers = append(reconcilers, aggregator.New(r.Client, r.Log, &vector, &agentConfig, reconcilerOpts).Reconcile)
-		}
-	}
+	// 		reconcilers = append(reconcilers, aggregator.New(r.Client, r.Log, &vector, &aggregatorConfig, reconcilerOpts).Reconcile)
+	// 	}
+	// }
 
 	if vector.Spec.AgentSpec != nil {
 		reconcilers = append(reconcilers, agent.New(r.Client, r.Log, &vector, reconcilerOpts, aggregator.NewDataProvider(r.Client)).Reconcile)
@@ -158,19 +158,19 @@ func boolToFloat64(b bool) float64 {
 }
 
 func (r *VectorReconciler) clusterConfiguration(resources model.VectorResources) (string, error) {
-	vectorConfig, err := model.CreateSystem(resources, r.Log)
-	if err != nil {
-		return "", errors.WrapIfWithDetails(err, "failed to build model", "vector", resources.Vector)
-	}
+	// vectorConfig, err := model.CreateSystem(resources, r.Log)
+	// if err != nil {
+	// 	return "", errors.WrapIfWithDetails(err, "failed to build model", "vector", resources.Vector)
+	// }
 
 	output := &bytes.Buffer{}
-	renderer := render.VectorRender{
-		Out:    output,
-		Indent: 2,
-	}
-	if err := renderer.Render(vectorConfig); err != nil {
-		return "", errors.WrapIfWithDetails(err, "failed to render vector config", "vector", resources.Vector)
-	}
+	// renderer := render.VectorRender{
+	// 	Out:    output,
+	// 	Indent: 2,
+	// }
+	// if err := renderer.Render(vectorConfig); err != nil {
+	// 	return "", errors.WrapIfWithDetails(err, "failed to render vector config", "vector", resources.Vector)
+	// }
 
 	return output.String(), nil
 }

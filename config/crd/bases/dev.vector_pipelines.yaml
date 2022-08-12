@@ -1,0 +1,272 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.9.2
+  creationTimestamp: null
+  name: pipelines.dev.vector
+spec:
+  group: dev.vector
+  names:
+    categories:
+    - vector-all
+    kind: Pipeline
+    listKind: PipelineList
+    plural: pipelines
+    singular: pipeline
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - description: Is the output active?
+      jsonPath: .status.active
+      name: Active
+      type: boolean
+    - description: Number of problems
+      jsonPath: .status.problemsCount
+      name: Problems
+      type: integer
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Pipeline is the Schema for the pipelines API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              sinks:
+                items:
+                  properties:
+                    name:
+                      type: string
+                  type: object
+                type: array
+              sources:
+                items:
+                  properties:
+                    apacheMetrics:
+                      description: 'ref: https://vector.dev/docs/reference/configuration/sources/apache_metrics/'
+                      properties:
+                        endpoints:
+                          description: mod_status endpoints to scrape metrics from.
+                          items:
+                            type: string
+                          type: array
+                        namespace:
+                          description: The namespace of the metric. Disabled if empty.
+                          type: string
+                        proxy:
+                          description: Configures an HTTP(S) proxy for Vector to use.
+                            By default, the globally configured proxy is used
+                          properties:
+                            enabled:
+                              description: If false the proxy will be disabled.
+                              type: boolean
+                            http:
+                              description: The URL to proxy HTTP requests through.
+                              type: string
+                            https:
+                              description: The URL to proxy HTTPS requests through.
+                              type: string
+                            noProxy:
+                              description: 'A list of hosts to avoid proxying see:
+                                https://vector.dev/docs/reference/configuration/sources/apache_metrics/#proxy.no_proxy'
+                              items:
+                                type: string
+                              type: array
+                            scrapeIntervalSecs:
+                              description: The interval between scrapes.
+                              format: int64
+                              type: integer
+                          type: object
+                        type:
+                          type: string
+                      type: object
+                    demoLogs:
+                      description: 'ref: https://vector.dev/docs/reference/configuration/sources/demo_logs/'
+                      properties:
+                        count:
+                          description: The total number of lines to output. By default
+                            the source continuously prints logs (infinitely).
+                          type: integer
+                        decoding:
+                          description: Configures in which way frames are decoded
+                            into events.
+                          properties:
+                            codec:
+                              description: The decoding method.
+                              type: string
+                          type: object
+                        format:
+                          description: The format of the randomly generated output.
+                          type: string
+                        framing:
+                          description: Configures in which way incoming byte sequences
+                            are split up into byte frames.
+                          properties:
+                            characterDelimited:
+                              description: 'Options for character_delimited framing.
+                                Relevant when: method = `character_delimited`'
+                              properties:
+                                delimiter:
+                                  description: The character used to separate frames.
+                                  type: string
+                                maxLength:
+                                  description: The maximum frame length limit. Any
+                                    frames longer than max_length bytes will be discarded
+                                    entirely.
+                                  format: int64
+                                  type: integer
+                              type: object
+                            method:
+                              description: The framing method.
+                              type: string
+                            newLineDelimitedMaxLength:
+                              description: 'Options for newline_delimited framing.
+                                Relevant when: method = `newline_delimited` The maximum
+                                frame length limit. Any frames longer than max_length
+                                bytes will be discarded entirely.'
+                              format: int64
+                              type: integer
+                            octetCountingMaxLength:
+                              description: 'Options for octet_counting framing. Relevant
+                                when: method = `octet_counting` The maximum frame
+                                length limit. Any frames longer than max_length bytes
+                                will be discarded entirely.'
+                              format: int64
+                              type: integer
+                          type: object
+                        interval:
+                          description: The amount of time, in seconds, to pause between
+                            each batch of output lines. The default is one batch per
+                            second. In order to remove the delay and output batches
+                            as quickly as possible, set interval to 0.0.
+                          type: string
+                        lines:
+                          description: The list of lines to output.
+                          items:
+                            type: string
+                          type: array
+                        sequence:
+                          description: If true, each output line starts with an increasing
+                            sequence number, beginning with 0.
+                          type: boolean
+                        type:
+                          type: string
+                      type: object
+                    name:
+                      type: string
+                    vector:
+                      description: https://vector.dev/docs/reference/configuration/sources/vector/
+                      properties:
+                        address:
+                          description: The HTTP address to listen for connections
+                            on. It must include a port.
+                          type: string
+                        keepAlive:
+                          description: Configures the TCP keepalive behavior for the
+                            connection to the source.
+                          properties:
+                            timeSecs:
+                              description: The time a connection needs to be idle
+                                before sending TCP keepalive probes.
+                              format: int64
+                              type: integer
+                          type: object
+                        receiveBufferBytes:
+                          description: Configures the receive buffer size using the
+                            SO_RCVBUF option on the socket.
+                          format: int64
+                          type: integer
+                        shutdownTimeoutSecs:
+                          description: The timeout before a connection is forcefully
+                            closed during shutdown.
+                          format: int64
+                          type: integer
+                        tls:
+                          description: Configures the TLS options for incoming connections.
+                          properties:
+                            caFile:
+                              description: Absolute path to an additional CA certificate
+                                file, in DER or PEM format (X.509), or an in-line
+                                CA certificate in PEM format.
+                              type: string
+                            clientMetadataKey:
+                              description: The key name added to each event with the
+                                client certificate’s metadata.
+                              type: string
+                            crtFile:
+                              description: Absolute path to a certificate file used
+                                to identify this server, in DER or PEM format (X.509)
+                                or PKCS#12, or an in-line certificate in PEM format.
+                                If this is set, and is not a PKCS#12 archive, key_file
+                                must also be set. This is required if enabled is set
+                                to true.
+                              type: string
+                            enabled:
+                              description: Require TLS for incoming connections. If
+                                this is set, an identity certificate is also required.
+                              type: boolean
+                            keyFile:
+                              description: Absolute path to a private key file used
+                                to identify this server, in DER or PEM format (PKCS#8),
+                                or an in-line private key in PEM format.
+                              type: string
+                            keyPass:
+                              description: Pass phrase used to unlock the encrypted
+                                key file. This has no effect unless key_file is set.
+                              type: string
+                            verifyCertificate:
+                              description: If true, Vector will require a TLS certificate
+                                from the connecting host and terminate the connection
+                                if the certificate is not valid. If false (the default),
+                                Vector will not request a certificate from the client.
+                              type: boolean
+                          type: object
+                        type:
+                          type: string
+                        version:
+                          description: Source API version. Specifying this version
+                            ensures that Vector does not break backward compatibility.
+                          type: string
+                      type: object
+                  type: object
+                type: array
+              transforms:
+                items:
+                  properties:
+                    name:
+                      type: string
+                  type: object
+                type: array
+              vectorRef:
+                type: string
+            type: object
+          status:
+            description: PipelineStatus defines the observed state of Pipeline
+            properties:
+              active:
+                type: boolean
+              problems:
+                items:
+                  type: string
+                type: array
+              problemsCount:
+                type: integer
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

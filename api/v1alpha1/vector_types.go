@@ -20,7 +20,10 @@ import (
 	"fmt"
 
 	util "github.com/banzaicloud/operator-tools/pkg/utils"
+	v1 "k8s.io/api/core/v1"
+	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/util/intstr"
 )
 
 // +name:"VectorSpec"
@@ -97,6 +100,176 @@ func init() {
 
 // SetDefaults fills empty attributes
 func (v *Vector) SetDefaults() error {
+	if v.Spec.AggregatorSpec != nil { // nolint:nestif
+		if v.Spec.AggregatorSpec.Image.Repository == "" {
+			v.Spec.AggregatorSpec.Image.Repository = DefaultAgentImageRepository
+		}
+		if v.Spec.AggregatorSpec.Image.Tag == "" {
+			v.Spec.AggregatorSpec.Image.Tag = DefaultAgentImageTag
+		}
+		if v.Spec.AggregatorSpec.Image.PullPolicy == "" {
+			v.Spec.AggregatorSpec.Image.PullPolicy = "IfNotPresent"
+		}
+		if v.Spec.AggregatorSpec.Annotations == nil {
+			v.Spec.AggregatorSpec.Annotations = make(map[string]string)
+		}
+		if v.Spec.AggregatorSpec.Metrics != nil {
+			if v.Spec.AggregatorSpec.Metrics.Path == "" {
+				v.Spec.AggregatorSpec.Metrics.Path = "/metrics"
+			}
+			if v.Spec.AggregatorSpec.Metrics.Port == 0 {
+				v.Spec.AggregatorSpec.Metrics.Port = 24231
+			}
+			if v.Spec.AggregatorSpec.Metrics.Timeout == "" {
+				v.Spec.AggregatorSpec.Metrics.Timeout = "5s"
+			}
+			if v.Spec.AggregatorSpec.Metrics.Interval == "" {
+				v.Spec.AggregatorSpec.Metrics.Interval = "15s"
+			}
+			if v.Spec.AggregatorSpec.Metrics.PrometheusAnnotations {
+				v.Spec.AggregatorSpec.Annotations["prometheus.io/scrape"] = "true"
+
+				v.Spec.AggregatorSpec.Annotations["prometheus.io/path"] = v.Spec.AggregatorSpec.Metrics.Path
+				v.Spec.AggregatorSpec.Annotations["prometheus.io/port"] = fmt.Sprintf("%d", v.Spec.AggregatorSpec.Metrics.Port)
+			}
+		}
+		if v.Spec.AggregatorSpec.Resources.Limits == nil {
+			v.Spec.AggregatorSpec.Resources.Limits = v1.ResourceList{
+				v1.ResourceMemory: resource.MustParse("1G"),
+				v1.ResourceCPU:    resource.MustParse("1"),
+			}
+		}
+		if v.Spec.AggregatorSpec.Resources.Requests == nil {
+			v.Spec.AggregatorSpec.Resources.Requests = v1.ResourceList{
+				v1.ResourceMemory: resource.MustParse("512M"),
+				v1.ResourceCPU:    resource.MustParse("500m"),
+			}
+		}
+		if v.Spec.AggregatorSpec.LivenessProbe == nil {
+			if v.Spec.AggregatorSpec.LivenessDefaultCheck {
+				v.Spec.AggregatorSpec.LivenessProbe = &v1.Probe{
+					ProbeHandler: v1.ProbeHandler{
+						Exec: &v1.ExecAction{Command: []string{"/bin/healthy.sh"}},
+					},
+					InitialDelaySeconds: 600,
+					TimeoutSeconds:      0,
+					PeriodSeconds:       60,
+					SuccessThreshold:    0,
+					FailureThreshold:    0,
+				}
+			}
+		}
+		if v.Spec.AggregatorSpec.ReadinessDefaultCheck.BufferFreeSpace {
+			if v.Spec.AggregatorSpec.ReadinessDefaultCheck.BufferFreeSpaceThreshold == 0 {
+				v.Spec.AggregatorSpec.ReadinessDefaultCheck.BufferFreeSpaceThreshold = 90
+			}
+		}
+		if v.Spec.AggregatorSpec.ReadinessDefaultCheck.BufferFileNumber {
+			if v.Spec.AggregatorSpec.ReadinessDefaultCheck.BufferFileNumberMax == 0 {
+				v.Spec.AggregatorSpec.ReadinessDefaultCheck.BufferFileNumberMax = 5000
+			}
+		}
+		if v.Spec.AggregatorSpec.ReadinessDefaultCheck.InitialDelaySeconds == 0 {
+			v.Spec.AggregatorSpec.ReadinessDefaultCheck.InitialDelaySeconds = 5
+		}
+		if v.Spec.AggregatorSpec.ReadinessDefaultCheck.TimeoutSeconds == 0 {
+			v.Spec.AggregatorSpec.ReadinessDefaultCheck.TimeoutSeconds = 3
+		}
+		if v.Spec.AggregatorSpec.ReadinessDefaultCheck.PeriodSeconds == 0 {
+			v.Spec.AggregatorSpec.ReadinessDefaultCheck.PeriodSeconds = 30
+		}
+		if v.Spec.AggregatorSpec.ReadinessDefaultCheck.SuccessThreshold == 0 {
+			v.Spec.AggregatorSpec.ReadinessDefaultCheck.SuccessThreshold = 3
+		}
+		if v.Spec.AggregatorSpec.ReadinessDefaultCheck.FailureThreshold == 0 {
+			v.Spec.AggregatorSpec.ReadinessDefaultCheck.FailureThreshold = 1
+		}
+		if v.Spec.AggregatorSpec.MountPath == "" {
+			v.Spec.AggregatorSpec.MountPath = "/etc/vector/"
+		}
+	}
+
+	if v.Spec.AgentSpec != nil { // nolint:nestif
+		if v.Spec.AgentSpec.Image.Repository == "" {
+			v.Spec.AgentSpec.Image.Repository = DefaultAggregatorImageRepository
+		}
+		if v.Spec.AgentSpec.Image.Tag == "" {
+			v.Spec.AgentSpec.Image.Tag = DefaultAggregatorImageTag
+		}
+		if v.Spec.AgentSpec.Image.PullPolicy == "" {
+			v.Spec.AgentSpec.Image.PullPolicy = "IfNotPresent"
+		}
+		if v.Spec.AgentSpec.LogLevel == "" {
+			v.Spec.AgentSpec.LogLevel = "info"
+		}
+		if v.Spec.AgentSpec.Resources.Limits == nil {
+			v.Spec.AgentSpec.Resources.Limits = v1.ResourceList{
+				v1.ResourceMemory: resource.MustParse("1G"),
+				v1.ResourceCPU:    resource.MustParse("1"),
+			}
+		}
+		if v.Spec.AgentSpec.Resources.Requests == nil {
+			v.Spec.AgentSpec.Resources.Requests = v1.ResourceList{
+				v1.ResourceMemory: resource.MustParse("512M"),
+				v1.ResourceCPU:    resource.MustParse("500m"),
+			}
+		}
+		if v.Spec.AgentSpec.Annotations == nil {
+			v.Spec.AgentSpec.Annotations = make(map[string]string)
+		}
+		if v.Spec.AgentSpec.Metrics != nil {
+			if v.Spec.AgentSpec.Metrics.Path == "" {
+				v.Spec.AgentSpec.Metrics.Path = "/api/v1/metrics/prometheus"
+			}
+			if v.Spec.AgentSpec.Metrics.Port == 0 {
+				v.Spec.AgentSpec.Metrics.Port = 2020
+			}
+			if v.Spec.AgentSpec.Metrics.Timeout == "" {
+				v.Spec.AgentSpec.Metrics.Timeout = "5s"
+			}
+			if v.Spec.AgentSpec.Metrics.Interval == "" {
+				v.Spec.AgentSpec.Metrics.Interval = "15s"
+			}
+			if v.Spec.AgentSpec.Metrics.PrometheusAnnotations {
+				v.Spec.AgentSpec.Annotations["prometheus.io/scrape"] = "true"
+				v.Spec.AgentSpec.Annotations["prometheus.io/path"] = v.Spec.AgentSpec.Metrics.Path
+				v.Spec.AgentSpec.Annotations["prometheus.io/port"] = fmt.Sprintf("%d", v.Spec.AgentSpec.Metrics.Port)
+			}
+		} else if v.Spec.AgentSpec.LivenessDefaultCheck {
+			v.Spec.AgentSpec.Metrics = &Metrics{
+				Port: 2020,
+				Path: "/",
+			}
+		}
+		if v.Spec.AgentSpec.LivenessProbe == nil {
+			if v.Spec.AgentSpec.LivenessDefaultCheck {
+				v.Spec.AgentSpec.LivenessProbe = &v1.Probe{
+					ProbeHandler: v1.ProbeHandler{
+						HTTPGet: &v1.HTTPGetAction{
+							Path: v.Spec.AgentSpec.Metrics.Path,
+							Port: intstr.IntOrString{
+								IntVal: v.Spec.AgentSpec.Metrics.Port,
+							},
+						}},
+					InitialDelaySeconds: 10,
+					TimeoutSeconds:      0,
+					PeriodSeconds:       10,
+					SuccessThreshold:    0,
+					FailureThreshold:    3,
+				}
+			}
+		}
+		if v.Spec.AgentSpec.MountPath == "" {
+			v.Spec.AgentSpec.MountPath = "/etc/vector/"
+		}
+		if v.Spec.AgentSpec.Security == nil {
+			v.Spec.AgentSpec.Security = &Security{}
+		}
+		if v.Spec.AgentSpec.Security.RoleBasedAccessControlCreate == nil {
+			v.Spec.AgentSpec.Security.RoleBasedAccessControlCreate = util.BoolPointer(true)
+		}
+	}
+
 	return nil
 }
 

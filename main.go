@@ -145,10 +145,16 @@ func main() {
 
 	vectorReconciler := controllers.NewVectorReconciler(mgr.GetClient(), ctrl.Log.WithName("controllers").WithName("Logging"))
 
-	//+kubebuilder:scaffold:builder
-
-	if err := vectorReconciler.SetupLoggingWithManager(mgr, ctrl.Log.WithName("manager")).Complete(loggingReconciler); err != nil {
+	if err := controllers.SetupVectorWithManager(mgr, ctrl.Log.WithName("manager")).Complete(vectorReconciler); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Logging")
+		os.Exit(1)
+	}
+
+	// +kubebuilder:scaffold:builder
+
+	setupLog.Info("starting manager")
+	if err := mgr.Start(ctrl.SetupSignalHandler()); err != nil {
+		setupLog.Error(err, "problem running manager")
 		os.Exit(1)
 	}
 }

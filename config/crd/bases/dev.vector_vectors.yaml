@@ -1780,6 +1780,8 @@ spec:
                               type: string
                           type: object
                         type: array
+                      vectorRef:
+                        type: string
                     type: object
                   readinessProbe:
                     description: Probe describes a health check to be performed against
@@ -4793,6 +4795,8 @@ spec:
                               type: string
                           type: object
                         type: array
+                      vectorRef:
+                        type: string
                     type: object
                   port:
                     format: int32
@@ -5538,7 +5542,7 @@ spec:
                 description: Namespace for cluster wide configuration resources like
                   Transforms and Sinks. This should be a protected namespace from
                   regular users. Resources like agent and aggregator will run in this
-                  namespace as well.
+                  namespace as welv.
                 type: string
               globalOptions:
                 properties:
