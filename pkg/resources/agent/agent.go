@@ -23,7 +23,6 @@ const (
 	clusterRoleName                = "vector-agent"
 	agentSecretConfigName          = "vector-agent"
 	agentDaemonSetName             = "vector-agent"
-	agentPodSecurityPolicyName     = "vector-agent"
 	agentServiceName               = "vector-agent"
 	containerName                  = "vector-agent"
 	defaultBufferVolumeMetricsPort = 9200
@@ -73,9 +72,6 @@ func (r *Reconciler) Reconcile() (*reconcile.Result, error) {
 		r.serviceAccount,
 		r.clusterRole,
 		r.clusterRoleBinding,
-		r.clusterPodSecurityPolicy,
-		r.pspClusterRole,
-		r.pspClusterRoleBinding,
 		r.daemonSet,
 		r.serviceMetrics,
 		r.monitorServiceMetrics,

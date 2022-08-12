@@ -53,13 +53,7 @@ func (r *Reconciler) daemonSet() (runtime.Object, reconciler.DesiredState, error
 					Tolerations:        r.Vector.Spec.AgentSpec.Tolerations,
 					NodeSelector:       r.Vector.Spec.AgentSpec.NodeSelector,
 					Affinity:           r.Vector.Spec.AgentSpec.Affinity,
-					SecurityContext: &corev1.PodSecurityContext{
-						FSGroup:      r.Vector.Spec.AgentSpec.Security.PodSecurityContext.FSGroup,
-						RunAsNonRoot: r.Vector.Spec.AgentSpec.Security.PodSecurityContext.RunAsNonRoot,
-						RunAsUser:    r.Vector.Spec.AgentSpec.Security.PodSecurityContext.RunAsUser,
-						RunAsGroup:   r.Vector.Spec.AgentSpec.Security.PodSecurityContext.RunAsGroup,
-					},
-					ImagePullSecrets: r.Vector.Spec.AgentSpec.Image.ImagePullSecrets,
+					ImagePullSecrets:   r.Vector.Spec.AgentSpec.Image.ImagePullSecrets,
 
 					Containers: containers,
 				},

@@ -19,6 +19,7 @@ package v1alpha1
 import (
 	"fmt"
 
+	util "github.com/banzaicloud/operator-tools/pkg/utils"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -42,7 +43,7 @@ type VectorSpec struct {
 	WatchNamespaces []string `json:"watchNamespaces,omitempty"`
 	// Namespace for cluster wide configuration resources like Transforms and Sinks.
 	// This should be a protected namespace from regular users.
-	// Resources like agent and aggregator will run in this namespace as well.
+	// Resources like agent and aggregator will run in this namespace as welv.
 	ControlNamespace string `json:"controlNamespace"`
 	// Allow configuration of cluster resources from any namespace. Mutually exclusive with ControlNamespace restriction of Cluster resources
 	AllowClusterResourcesFromAllNamespaces bool `json:"allowClusterResourcesFromAllNamespaces,omitempty"`
@@ -92,4 +93,43 @@ func (v *Vector) QualifiedName(name string) string {
 
 func init() {
 	SchemeBuilder.Register(&Vector{}, &VectorList{})
+}
+
+// SetDefaults fills empty attributes
+func (v *Vector) SetDefaults() error {
+	return nil
+}
+
+// AggregatorObjectMeta creates an objectMeta for resource Aggregator
+func (v *Vector) AggregatorObjectMeta(name, component string) metav1.ObjectMeta {
+	o := metav1.ObjectMeta{
+		Name:      v.QualifiedName(name),
+		Namespace: v.Spec.ControlNamespace,
+		Labels:    v.GetAggregatorLabels(component),
+		OwnerReferences: []metav1.OwnerReference{
+			{
+				APIVersion: v.APIVersion,
+				Kind:       v.Kind,
+				Name:       v.Name,
+				UID:        v.UID,
+				Controller: util.BoolPointer(true),
+			},
+		},
+	}
+	return o
+}
+
+func (v *Vector) GetAggregatorLabels(component string) map[string]string {
+	return util.MergeLabels(
+		v.Spec.AggregatorSpec.Labels,
+		map[string]string{
+			"app.kubernetes.io/name":      "aggregator",
+			"app.kubernetes.io/component": component,
+		},
+		GenerateVectorRefLabels(v.ObjectMeta.GetName()),
+	)
+}
+
+func GenerateVectorRefLabels(vectorRef string) map[string]string {
+	return map[string]string{"app.kubernetes.io/managed-by": vectorRef}
 }
